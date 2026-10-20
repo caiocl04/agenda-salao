@@ -1,0 +1,218 @@
+:root {
+  --primary: #8b5cf6;
+  --primary-dark: #7c3aed;
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --success: #22c55e;
+  --danger: #ef4444;
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  font-family: system-ui, -apple-system, sans-serif; 
+}
+
+body { 
+  background-color: var(--bg); 
+  color: var(--text); 
+  padding: 16px; 
+  max-width: 500px; 
+  margin: 0 auto; 
+  padding-bottom: 40px; 
+}
+
+header { 
+  text-align: center; 
+  margin-bottom: 24px; 
+  padding-top: 12px; 
+}
+
+header h1 { 
+  font-size: 1.5rem; 
+  color: var(--primary); 
+}
+
+nav { 
+  display: flex; 
+  gap: 8px; 
+  margin-bottom: 20px; 
+  background: var(--card); 
+  padding: 6px; 
+  border-radius: 12px; 
+}
+
+nav button { 
+  flex: 1; 
+  padding: 10px; 
+  border: none; 
+  background: transparent; 
+  color: var(--text-muted); 
+  font-weight: 600; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-size: 0.85rem; 
+}
+
+nav button.active { 
+  background: var(--primary); 
+  color: #fff; 
+}
+
+.tab-content { 
+  display: none; 
+}
+
+.tab-content.active { 
+  display: block; 
+}
+
+.card { 
+  background: var(--card); 
+  padding: 16px; 
+  border-radius: 12px; 
+  margin-bottom: 16px; 
+  border: 1px solid var(--border); 
+}
+
+h2 { 
+  font-size: 1.1rem; 
+  margin-bottom: 12px; 
+}
+
+label { 
+  display: block; 
+  font-size: 0.85rem; 
+  color: var(--text-muted); 
+  margin-bottom: 6px; 
+  margin-top: 12px; 
+}
+
+input, select { 
+  width: 100%; 
+  padding: 12px; 
+  border-radius: 8px; 
+  border: 1px solid var(--border); 
+  background: #0f172a; 
+  color: var(--text); 
+  font-size: 1rem; 
+}
+
+.services-grid { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 10px; 
+}
+
+.service-card { 
+  background: #0f172a; 
+  border: 2px solid var(--border); 
+  padding: 12px; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.service-card.selected { 
+  border-color: var(--primary); 
+  background: rgba(139, 92, 246, 0.1); 
+}
+
+.service-info strong { 
+  display: block; 
+  font-size: 1rem; 
+}
+
+.service-info span { 
+  font-size: 0.8rem; 
+  color: var(--text-muted); 
+}
+
+.service-price { 
+  font-weight: bold; 
+  color: var(--primary); 
+}
+
+.slots-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 8px; 
+  margin-top: 10px; 
+}
+
+.slot-btn { 
+  padding: 10px; 
+  border: 1px solid var(--border); 
+  background: #0f172a; 
+  color: var(--text); 
+  border-radius: 8px; 
+  cursor: pointer; 
+  text-align: center; 
+}
+
+.slot-btn.selected { 
+  background: var(--primary); 
+  border-color: var(--primary); 
+}
+
+.slot-btn:disabled { 
+  opacity: 0.3; 
+  cursor: not-allowed; 
+  text-decoration: line-through; 
+}
+
+.btn-main { 
+  width: 100%; 
+  padding: 14px; 
+  border: none; 
+  background: var(--primary); 
+  color: white; 
+  font-weight: bold; 
+  font-size: 1rem; 
+  border-radius: 10px; 
+  margin-top: 20px; 
+  cursor: pointer; 
+}
+
+.btn-main:hover { 
+  background: var(--primary-dark); 
+}
+
+.appointment-item { 
+  background: #0f172a; 
+  padding: 12px; 
+  border-radius: 8px; 
+  margin-bottom: 10px; 
+  border-left: 4px solid var(--primary); 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.btn-cancel { 
+  background: var(--danger); 
+  color: white; 
+  border: none; 
+  padding: 6px 12px; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-size: 0.8rem; 
+}
+
+.btn-whatsapp { 
+  background: var(--success); 
+  color: white; 
+  border: none; 
+  padding: 6px 12px; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-size: 0.8rem; 
+  text-decoration: none; 
+  display: inline-block; 
+}

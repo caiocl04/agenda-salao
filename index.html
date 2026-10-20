@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda do Salão</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>✂️ SC Barber</h1>
+    <p style="font-size: 0.85rem; color: var(--text-muted);">Agendamento Online</p>
+  </header>
+
+  <nav>
+    <button class="active" onclick="switchTab('agendar')">Agendar</button>
+    <button onclick="switchTab('meus')">Meus Horários</button>
+    <button onclick="switchTab('admin')">Área Profissional</button>
+  </nav>
+
+  <!-- ABA 1: AGENDAR -->
+  <div id="tab-agendar" class="tab-content active">
+    <div class="card">
+      <h2>1. Escolha o Serviço</h2>
+      <div class="services-grid" id="services-container"></div>
+    </div>
+
+    <div class="card">
+      <h2>2. Escolha o Dia e Horário</h2>
+      <label for="booking-date">Data</label>
+      <input type="date" id="booking-date" onchange="renderSlots()">
+
+      <label>Horários Disponíveis</label>
+      <div class="slots-grid" id="slots-container">
+        <p style="grid-column: span 3; font-size:0.85rem; color: var(--text-muted);">Selecione uma data acima.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3. Seus Dados</h2>
+      <label for="client-name">Nome Completo</label>
+      <input type="text" id="client-name" placeholder="Digite seu nome">
+
+      <label for="client-phone">Telefone (WhatsApp)</label>
+      <input type="tel" id="client-phone" placeholder="Ex: (11) 99999-9999">
+
+      <button class="btn-main" onclick="confirmBooking()">Confirmar Agendamento</button>
+    </div>
+  </div>
+
+  <!-- ABA 2: MEUS AGENDAMENTOS -->
+  <div id="tab-meus" class="tab-content">
+    <div class="card">
+      <h2>Consultar Meus Horários</h2>
+      <label for="search-phone">Digite seu Telefone</label>
+      <input type="tel" id="search-phone" placeholder="Ex: (11) 99999-9999">
+      <button class="btn-main" onclick="searchClientBookings()">Buscar</button>
+    </div>
+    <div id="client-results"></div>
+  </div>
+
+  <!-- ABA 3: ÁREA DO PROFISSIONAL -->
+  <div id="tab-admin" class="tab-content">
+    <div id="admin-login-card" class="card">
+      <h2>Acesso Restrito</h2>
+      <label for="admin-pin">PIN de Acesso</label>
+      <input type="password" id="admin-pin" placeholder="Digite sua senha">
+      <button class="btn-main" onclick="unlockAdmin()">Entrar</button>
+    </div>
+
+    <div id="admin-panel" style="display: none;">
+      <div class="card">
+        <h2>Agenda do Dia</h2>
+        <label for="admin-date">Filtrar por Data</label>
+        <input type="date" id="admin-date" onchange="renderAdminSchedule()">
+      </div>
+
+      <div class="card" style="background: var(--primary); color: white;">
+        <span style="font-size: 0.85rem;">Previsão de Faturamento</span>
+        <h3 id="admin-revenue" style="font-size: 1.8rem;">R$ 0,00</h3>
+      </div>
+
+      <div id="admin-schedule-list"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
