@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agenda do Salão</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -19,7 +20,7 @@
     <button onclick="switchTab('admin')">Área Profissional</button>
   </nav>
 
-  <!-- ABA 1: AGENDAR -->
+  <!-- ABA  AGENDAR -->
   <div id="tab-agendar" class="tab-content active">
     <div class="card">
       <h2>1. Escolha o Serviço</h2>
@@ -49,7 +50,7 @@
     </div>
   </div>
 
-  <!-- ABA 2: MEUS AGENDAMENTOS -->
+  <!-- ABA  MEUS AGENDAMENTOS -->
   <div id="tab-meus" class="tab-content">
     <div class="card">
       <h2>Consultar Meus Horários</h2>
@@ -60,7 +61,7 @@
     <div id="client-results"></div>
   </div>
 
-  <!-- ABA 3: ÁREA DO PROFISSIONAL -->
+  <!-- ABA  ÁREA DO PROFISSIONAL -->
   <div id="tab-admin" class="tab-content">
     <div id="admin-login-card" class="card">
       <h2>Acesso Restrito</h2>
