@@ -1,6 +1,6 @@
 // CONFIGURAÇÃO DO SUPABASE
 const SUPABASE_URL = 'https://tgzanubzswqfhzvsjylk.supabase.co';
-const SUPABASE_KEY = 'COLE_SUA_CHAVE_ANON_AQUI'; // Cole aqui sua chave anon/public do Supabase
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnemFudWJ6c3dxZmh6dnNqeWxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQzMzY2NjksImV4cCI6MjEwOTkxMjY2OX0.fn7m6N22TAmOd0KcLQYObg_X3h__4Yf9rvMjEgB8Ukw'; // Cole aqui sua chave anon/public do Supabase
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // CONFIGURAÇÕES DO SALÃO
