@@ -1,218 +1,281 @@
 :root {
-  --primary: #8b5cf6;
-  --primary-dark: #7c3aed;
-  --bg: #0f172a;
-  --card: #1e293b;
-  --text: #f8fafc;
-  --text-muted: #94a3b8;
-  --border: #334155;
-  --success: #22c55e;
-  --danger: #ef4444;
+  --bg-dark: #0a0a0a;
+  --card-bg: rgba(20, 20, 20, 0.90);
+  --card-border: #262626;
+  --primary: #c59b27; /* Dourado oficial da SC Barber */
+  --primary-hover: #e0b438;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+  --slot-bg: #161616;
+  --slot-hover: #242424;
 }
 
-* { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
-  font-family: system-ui, -apple-system, sans-serif; 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 }
 
-body { 
-  background-color: var(--bg); 
-  color: var(--text); 
-  padding: 16px; 
-  max-width: 500px; 
-  margin: 0 auto; 
-  padding-bottom: 40px; 
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  padding: 20px 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
 }
 
-header { 
-  text-align: center; 
-  margin-bottom: 24px; 
-  padding-top: 12px; 
+/* Marca d'água da logo no fundo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  background-image: url('logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.08; /* Transparência sutil no fundo */
+  pointer-events: none;
+  z-index: -1;
 }
 
-header h1 { 
-  font-size: 1.5rem; 
-  color: var(--primary); 
+header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-nav { 
-  display: flex; 
-  gap: 8px; 
-  margin-bottom: 20px; 
-  background: var(--card); 
-  padding: 6px; 
-  border-radius: 12px; 
+header h1 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 
-nav button { 
-  flex: 1; 
-  padding: 10px; 
-  border: none; 
-  background: transparent; 
-  color: var(--text-muted); 
-  font-weight: 600; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  font-size: 0.85rem; 
+/* Navegação entre abas */
+nav {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  background: rgba(25, 25, 25, 0.8);
+  padding: 5px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
 }
 
-nav button.active { 
-  background: var(--primary); 
-  color: #fff; 
+nav button {
+  flex: 1;
+  padding: 12px 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.tab-content { 
-  display: none; 
+nav button.active {
+  background: var(--primary);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(197, 155, 39, 0.3);
 }
 
-.tab-content.active { 
-  display: block; 
+/* Cards do sistema */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
-.card { 
-  background: var(--card); 
-  padding: 16px; 
-  border-radius: 12px; 
-  margin-bottom: 16px; 
-  border: 1px solid var(--border); 
+.card h2 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-weight: 700;
 }
 
-h2 { 
-  font-size: 1.1rem; 
-  margin-bottom: 12px; 
+/* Formatações de Inputs */
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
 }
 
-label { 
-  display: block; 
-  font-size: 0.85rem; 
-  color: var(--text-muted); 
-  margin-bottom: 6px; 
-  margin-top: 12px; 
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  background: #111111;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
-input, select { 
-  width: 100%; 
-  padding: 12px; 
-  border-radius: 8px; 
-  border: 1px solid var(--border); 
-  background: #0f172a; 
-  color: var(--text); 
-  font-size: 1rem; 
+input:focus {
+  border-color: var(--primary);
 }
 
-.services-grid { 
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 10px; 
+/* Seleção de Serviços */
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.service-card { 
-  background: #0f172a; 
-  border: 2px solid var(--border); 
-  padding: 12px; 
-  border-radius: 10px; 
-  cursor: pointer; 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
+.service-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: #111111;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.service-card.selected { 
-  border-color: var(--primary); 
-  background: rgba(139, 92, 246, 0.1); 
+.service-card.selected {
+  border-color: var(--primary);
+  background: rgba(197, 155, 39, 0.12);
+  box-shadow: inset 0 0 0 1px var(--primary);
 }
 
-.service-info strong { 
-  display: block; 
-  font-size: 1rem; 
+.service-info strong {
+  display: block;
+  color: #ffffff;
+  font-size: 0.95rem;
 }
 
-.service-info span { 
-  font-size: 0.8rem; 
-  color: var(--text-muted); 
+.service-info span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
-.service-price { 
-  font-weight: bold; 
-  color: var(--primary); 
+.service-price {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.05rem;
 }
 
-.slots-grid { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 8px; 
-  margin-top: 10px; 
+/* Grid de Horários */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.slot-btn { 
-  padding: 10px; 
-  border: 1px solid var(--border); 
-  background: #0f172a; 
-  color: var(--text); 
-  border-radius: 8px; 
-  cursor: pointer; 
-  text-align: center; 
+.slot-btn {
+  padding: 12px 5px;
+  background: var(--slot-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.slot-btn.selected { 
-  background: var(--primary); 
-  border-color: var(--primary); 
+.slot-btn:hover:not(:disabled) {
+  background: var(--slot-hover);
+  border-color: var(--primary);
 }
 
-.slot-btn:disabled { 
-  opacity: 0.3; 
-  cursor: not-allowed; 
-  text-decoration: line-through; 
+.slot-btn.selected {
+  background: var(--primary) !important;
+  color: #000000 !important;
+  font-weight: 800;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(197, 155, 39, 0.4);
 }
 
-.btn-main { 
-  width: 100%; 
-  padding: 14px; 
-  border: none; 
-  background: var(--primary); 
-  color: white; 
-  font-weight: bold; 
-  font-size: 1rem; 
-  border-radius: 10px; 
-  margin-top: 20px; 
-  cursor: pointer; 
+.slot-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  background: #0d0d0d;
 }
 
-.btn-main:hover { 
-  background: var(--primary-dark); 
+/* Botão Principal */
+.btn-main {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: #000000;
+  font-weight: 800;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease, transform 0.1s ease;
 }
 
-.appointment-item { 
-  background: #0f172a; 
-  padding: 12px; 
-  border-radius: 8px; 
-  margin-bottom: 10px; 
-  border-left: 4px solid var(--primary); 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
+.btn-main:hover {
+  background: var(--primary-hover);
 }
 
-.btn-cancel { 
-  background: var(--danger); 
-  color: white; 
-  border: none; 
-  padding: 6px 12px; 
-  border-radius: 6px; 
-  cursor: pointer; 
-  font-size: 0.8rem; 
+.btn-main:active {
+  transform: scale(0.98);
 }
 
-.btn-whatsapp { 
-  background: var(--success); 
-  color: white; 
-  border: none; 
-  padding: 6px 12px; 
-  border-radius: 6px; 
-  cursor: pointer; 
-  font-size: 0.8rem; 
-  text-decoration: none; 
-  display: inline-block; 
+/* Ações de Agendamento/WhatsApp */
+.appointment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.btn-cancel {
+  background: #dc3545;
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Alternância das Abas */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
 }
