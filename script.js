@@ -13,10 +13,10 @@ const CONFIG = {
 };
 
 const SERVICES = [
-  { id: 1, name: "Corte Masculino", duration: 30, price: 40 },
-  { id: 2, name: "Barba Completa", duration: 30, price: 30 },
-  { id: 3, name: "Corte + Barba", duration: 60, price: 65 },
-  { id: 4, name: "Corte Feminino / Escova", duration: 60, price: 90 }
+  { id: 1, name: "Corte Masculino", duration: 30, price: 25 },
+  { id: 2, name: "Barba", duration: 30, price: 20 },
+  { id: 3, name: "Corte + Barba", duration: 60, price: 40 },
+  { id: 4, name: "Sombrancelha", duration: 10, price: 5 }
 ];
 
 let db, selectedService = SERVICES[0], selectedSlot = null, busy = false;
