@@ -3,89 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agenda do Salão</title>
+  <title>SC Barber | Agende seu corte online</title>
+  <meta name="description" content="Agende seu corte ou barba na SC Barber em menos de 1 minuto. Escolha o serviço, o horário e confirme pelo WhatsApp.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="bg" aria-hidden="true"></div>
 
-  <header>
-    <h1>✂️ SC Barber</h1>
-    <p style="font-size: 0.85rem; color: var(--text-muted);">Agendamento Online</p>
-  </header>
-
-  <nav>
-    <button class="active" onclick="switchTab('agendar')">Agendar</button>
-    <button onclick="switchTab('meus')">Meus Horários</button>
-    <button onclick="switchTab('admin')">Área Profissional</button>
-  </nav>
-
-  <!-- ABA  AGENDAR -->
-  <div id="tab-agendar" class="tab-content active">
-    <div class="card">
-      <h2>1. Escolha o Serviço</h2>
-      <div class="services-grid" id="services-container"></div>
-    </div>
-
-    <div class="card">
-      <h2>2. Escolha o Dia e Horário</h2>
-      <label for="booking-date">Data</label>
-      <input type="date" id="booking-date" onchange="renderSlots()">
-
-      <label>Horários Disponíveis</label>
-      <div class="slots-grid" id="slots-container">
-        <p style="grid-column: span 3; font-size:0.85rem; color: var(--text-muted);">Selecione uma data acima.</p>
+  <main class="wrap">
+    <header class="hero">
+      <img class="logo" src="logo.png" width="132" height="132" alt="Logo SC Barber">
+      <h1>Corte de respeito,<br>sem fila de espera.</h1>
+      <p class="lead">Escolha o serviço, o horário e pronto. Leva menos de um minuto.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#servicos" id="cta-hero">Agendar meu horário</a>
+        <a class="btn btn-ghost" id="hero-wa" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
       </div>
-    </div>
+      <ul class="trust">
+        <li>Sem cadastro</li>
+        <li>Confirmação no WhatsApp</li>
+        <li>Cancele quando quiser</li>
+      </ul>
+      <p class="hours" id="hours-text"></p>
+    </header>
 
-    <div class="card">
-      <h2>3. Seus Dados</h2>
-      <label for="client-name">Nome Completo</label>
-      <input type="text" id="client-name" placeholder="Digite seu nome">
+    <nav class="tabs" aria-label="Seções">
+      <button class="active" data-tab="agendar">Agendar</button>
+      <button data-tab="meus">Meus horários</button>
+    </nav>
 
-      <label for="client-phone">Telefone (WhatsApp)</label>
-      <input type="tel" id="client-phone" placeholder="Ex: (11) 99999-9999">
+    <!-- AGENDAR -->
+    <section id="tab-agendar" class="tab-content active">
+      <div class="card" id="servicos">
+        <h2><span class="step">1</span> Escolha o serviço</h2>
+        <div class="services-grid" id="services-container"></div>
+      </div>
 
-      <button class="btn-main" onclick="confirmBooking()">Confirmar Agendamento</button>
-    </div>
-  </div>
-
-  <!-- ABA  MEUS AGENDAMENTOS -->
-  <div id="tab-meus" class="tab-content">
-    <div class="card">
-      <h2>Consultar Meus Horários</h2>
-      <label for="search-phone">Digite seu Telefone</label>
-      <input type="tel" id="search-phone" placeholder="Ex: (11) 99999-9999">
-      <button class="btn-main" onclick="searchClientBookings()">Buscar</button>
-    </div>
-    <div id="client-results"></div>
-  </div>
-
-  <!-- ABA  ÁREA DO PROFISSIONAL -->
-  <div id="tab-admin" class="tab-content">
-    <div id="admin-login-card" class="card">
-      <h2>Acesso Restrito</h2>
-      <label for="admin-pin">PIN de Acesso</label>
-      <input type="password" id="admin-pin" placeholder="Digite sua senha">
-      <button class="btn-main" onclick="unlockAdmin()">Entrar</button>
-    </div>
-
-    <div id="admin-panel" style="display: none;">
       <div class="card">
-        <h2>Agenda do Dia</h2>
-        <label for="admin-date">Filtrar por Data</label>
-        <input type="date" id="admin-date" onchange="renderAdminSchedule()">
+        <h2><span class="step">2</span> Escolha o dia e o horário</h2>
+        <label for="booking-date">Data</label>
+        <input type="date" id="booking-date">
+        <label>Horários disponíveis</label>
+        <div class="slots-grid" id="slots-container" aria-live="polite"></div>
       </div>
 
-      <div class="card" style="background: var(--primary); color: white;">
-        <span style="font-size: 0.85rem;">Previsão de Faturamento</span>
-        <h3 id="admin-revenue" style="font-size: 1.8rem;">R$ 0,00</h3>
+      <div class="card" id="form-card">
+        <h2><span class="step">3</span> Seus dados</h2>
+        <label for="client-name">Nome</label>
+        <input type="text" id="client-name" placeholder="Como podemos te chamar?" autocomplete="name">
+        <label for="client-phone">WhatsApp</label>
+        <input type="tel" id="client-phone" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15">
+
+        <div class="summary" id="summary" hidden></div>
+        <button class="btn btn-gold btn-block" id="confirm-btn">Confirmar agendamento</button>
+        <p class="hint">Você recebe a confirmação no WhatsApp.</p>
       </div>
 
-      <div id="admin-schedule-list"></div>
-    </div>
-  </div>
+      <div class="card success" id="success-card" hidden>
+        <div class="check" aria-hidden="true">✓</div>
+        <h2>Horário reservado!</h2>
+        <p id="success-text"></p>
+        <a class="btn btn-gold btn-block" id="success-wa" href="#" target="_blank" rel="noopener">Enviar confirmação no WhatsApp</a>
+        <button class="btn btn-ghost btn-block" id="new-booking">Fazer outro agendamento</button>
+      </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- MEUS HORÁRIOS -->
+    <section id="tab-meus" class="tab-content">
+      <div class="card">
+        <h2>Consultar meus horários</h2>
+        <label for="search-phone">Seu WhatsApp (com DDD)</label>
+        <input type="tel" id="search-phone" placeholder="(11) 99999-9999" inputmode="numeric" maxlength="15">
+        <button class="btn btn-gold btn-block" id="search-btn">Buscar</button>
+      </div>
+      <div id="client-results"></div>
+    </section>
+
+    <!-- ÁREA PROFISSIONAL -->
+    <section id="tab-admin" class="tab-content">
+      <div id="admin-login-card" class="card">
+        <h2>Área profissional</h2>
+        <label for="admin-email">E-mail</label>
+        <input type="email" id="admin-email" autocomplete="username">
+        <label for="admin-pass">Senha</label>
+        <input type="password" id="admin-pass" autocomplete="current-password">
+        <button class="btn btn-gold btn-block" id="admin-login-btn">Entrar</button>
+      </div>
+
+      <div id="admin-panel" hidden>
+        <div class="card">
+          <h2>Agenda do dia</h2>
+          <label for="admin-date">Data</label>
+          <input type="date" id="admin-date">
+        </div>
+        <div class="card revenue">
+          <span>Previsão de faturamento</span>
+          <strong id="admin-revenue">R$ 0,00</strong>
+        </div>
+        <div id="admin-schedule-list"></div>
+        <button class="btn btn-ghost btn-block" id="admin-logout">Sair</button>
+      </div>
+    </section>
+
+    <footer>
+      <p>© SC Barber</p>
+      <button class="link" id="open-admin">Área profissional</button>
+    </footer>
+  </main>
+
+  <a class="fab" id="fab-wa" href="#" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+    <span aria-hidden="true" style="font-size:1.6rem;line-height:1">💬</span>
+  </a>
 </body>
 </html>
